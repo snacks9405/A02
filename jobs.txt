@@ -1,0 +1,4 @@
+add job a with length 5 and priority -15
+add job b with length 3 and priority -12
+add job c with length 7 and priority 8
+no new job slice
