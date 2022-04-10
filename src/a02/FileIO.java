@@ -75,6 +75,7 @@ public class FileIO {
     public static ArrayList<String> formatChecker(String currentLine) {
         ArrayList<String> importantValues = new ArrayList<>(); //important values in form [0]:name [1]:length [2]: priority
         String[] stringSplit = currentLine.split("\\s"); //split the currentline into an array based on spaces
+        //String[] stringSplit = stringSplitter(currentLine); //not sure if the above line is regex or not so made a fallback method.. 
         if (currentLine.equals("no new job this slice")) {
             importantValues.add(importantValues.size(), "Skip"); //edge case returns array holding just "Skip"
             return importantValues;
@@ -107,6 +108,27 @@ public class FileIO {
         }
         return importantValues;
     }//formatChecker method
+
+    /**
+     * threw this together in case String.split("\\s") is regex and forbidden.
+     * 
+     * @param stringToSplit String to convert to array
+     * @return String[] of words in the stringToSplit
+     */
+    private static String[] stringSplitter(String stringToSplit) {
+        ArrayList<String> splitStringAList = new ArrayList<>();
+        Scanner reader = new Scanner(stringToSplit);
+        while (reader.hasNext()){
+            splitStringAList.add(splitStringAList.size(), reader.next());
+        }
+        String[] splitString = new String[splitStringAList.size()];
+        int i = 0;
+        for (String string : splitStringAList) {
+            splitString[i] = string;
+            i++;
+        }
+        return splitString;
+    }//stringSplitter method
 
     /**
      * returns true if String is an integer else false
